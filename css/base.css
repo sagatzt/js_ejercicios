@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "parry-hotter-regular";
+  src: url("../fonts/parry-hotter-regular.ttf");
+}
+
+body {
+  /*background-color: black;
+    font-family: "parry-hotter-regular";
+    color: #aaa;
+    background-image: url(../images/hp_wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-height: 222px;
+    background-position-x: center;*/
+}
+
+.header {
+  font-family: "parry-hotter-regular";
+  color: #aaa;
+  top: 20px;
+  padding-top: 200px;
+  text-align: center;
+  max-width: 1080px;
+}
+
+div.resultado {
+  border: 1px dashed #ccc;
+  max-width: 250px;
+  min-height: 200px;
+  margin: 10px;
+  background: #fbffd3;
+  overflow-x: auto;
+}
