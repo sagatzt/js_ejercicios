@@ -199,12 +199,11 @@ sacarNumero.onclick=()=>{
         if(confirm("Te ha salido un 1. ¿Quieres que valga 10?")) numero.valor=10
     jugada.push(numero)
     if(numeros.length==0) mezclarNumeros()
-    comprobarJugada()
     carta.src=`/images/baraja/${numero.imagen}`
-    //clonamos la carta pequeñita y la mostramos en la jugada:
     let minicarta=carta.cloneNode()
     minicarta.style.width="60px"
     document.querySelector(".jugada").appendChild(minicarta)
+    comprobarJugada()
 }
  
 function comprobarJugada(){
