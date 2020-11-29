@@ -175,44 +175,47 @@ console.log(r(255,6,10))
 
 let resultado = document.querySelector(".resultado")
 let sacarNumero = document.querySelector("#boton1")
+let carta = document.querySelector(".carta")
 let numeros = []
+let palos = ["picas","diamantes","treboles","corazones"]
 let jugada=[]
 
 mezclarNumeros()
 function mezclarNumeros(){
-    while(numeros.length<40){
-        for(let i=1;i<11;i++){
-            numeros.push(i)
-        }    
-    }  
+    palos.forEach(p=>{
+        for(let i=1;i<11;i++) 
+            numeros.push({
+                palo: p,
+                valor: i,
+                imagen: `${p}_${i}.svg`
+            })
+    })
     numeros.sort(n=>Math.random()-.5) 
 }
 
 sacarNumero.onclick=()=>{
-    let numero=numeros.shift()
+    let numero = numeros.shift()
+    if(numero.valor==1) 
+        if(confirm("Te ha salido un 1. ¿Quieres que valga 10?")) numero.valor=10
     jugada.push(numero)
-    //vamos a sumar todos los numeros de jugada:
-    let total=jugada.reduce((a,b)=>a+b)
-    resultado.innerHTML=total
-    //////////////////////////////
     if(numeros.length==0) mezclarNumeros()
     comprobarJugada()
+    carta.src=`/images/baraja/${numero.imagen}`
+    //clonamos la carta pequeñita y la mostramos en la jugada:
+    let minicarta=carta.cloneNode()
+    minicarta.style.width="60px"
+    document.querySelector(".jugada").appendChild(minicarta)
 }
  
 function comprobarJugada(){
-    let total=jugada.reduce((a,b)=>a+b)
+    console.log(jugada)
+    let total=jugada.map(c=>c.valor).reduce((a,b)=>a+b)
+    resultado.innerHTML=total    
     if(total==21)
         resultado.innerHTML+="HAS GANADO"
     else if(total>21)
         resultado.innerHTML+="HAS PERDIDO"
-
 }
-
-
-
-
-
-resultado.innerHTML=numeros
 
 
 
